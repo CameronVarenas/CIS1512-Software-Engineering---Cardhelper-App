@@ -1,10 +1,24 @@
+import React from 'react';
+import { HashRouter, Link } from 'react-router-dom';
+import routes from './routes';
 import './App.css';
 
 function App() {
   return (
-    <div>
-      <h1>Hello, World!</h1>
-    </div>
+    <HashRouter>
+      <html id='App'>
+        <header id='header'>
+          <nav id='header-text'>
+            <h2>Cardhelper</h2>
+            <h2 id='login-logout-button'>Login</h2>
+          </nav>
+        </header>
+        <body>
+          {routes}
+        </body>
+      </html>
+    </HashRouter>
+
   );
 }
 

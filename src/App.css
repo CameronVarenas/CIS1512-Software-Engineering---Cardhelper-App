@@ -1,0 +1,23 @@
+
+/* app background color */
+
+#App {
+    background-color: #3c3c3c;
+}
+
+/* header navbar display */
+
+#header {
+    width: 100%;
+    background-color: #b4b4b4;
+}
+
+#header-text {
+    display: flex;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#login-logout-button {
+    margin-left: auto;
+}
