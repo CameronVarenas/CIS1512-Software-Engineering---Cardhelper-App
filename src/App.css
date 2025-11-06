@@ -12,6 +12,15 @@
         linear-gradient(to bottom, #282828 1px, transparent 1px);
 }
 
+/* hashrouter links */
+
+a {
+    color: white;
+}
+a.hover {
+    color: white;
+}
+
 /* header navbar display */
 
 #header {

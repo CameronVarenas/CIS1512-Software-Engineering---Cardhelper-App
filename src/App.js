@@ -8,8 +8,12 @@ function App() {
       <div id='App'>
         <header id='header'>
           <nav id='header-text'>
-            <h2>Cardhelper</h2>
-            <h2 id='login-logout-button'>Login</h2>
+            <h2><Link
+              to='/'
+            >Cardhelper</Link></h2>
+            <h2 id='login-logout-button'><Link
+              to='/auth'
+            >Login</Link></h2>
           </nav>
         </header>
         <main id='main-content'>
