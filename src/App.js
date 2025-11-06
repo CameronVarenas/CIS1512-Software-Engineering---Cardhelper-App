@@ -1,9 +1,10 @@
-import React from 'react';
-import Landing from './components/Landing.js';
+import { HashRouter, Link } from 'react-router-dom';
+import routes from './routes';
 import './App.css';
 
 function App() {
   return (
+    <HashRouter>
       <div id='App'>
         <header id='header'>
           <nav id='header-text'>
@@ -12,9 +13,10 @@ function App() {
           </nav>
         </header>
         <main id='main-content'>
-          <Landing />
+          {routes}
         </main>
       </div>
+    </HashRouter>
   );
 }
 
