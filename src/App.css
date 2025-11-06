@@ -53,14 +53,13 @@ a.hover {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: #282828 2px solid;
-}
-
-/* landing page display */
-
-#landing-container {
     text-align: center;
     padding: 50px;
 }
 
 /* auth page display */
 
+.auth-inputs {
+    margin-bottom: 10px;
+    height: 25px;
+}
