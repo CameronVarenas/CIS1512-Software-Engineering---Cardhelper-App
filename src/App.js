@@ -1,16 +1,20 @@
 import React from 'react';
+import Landing from './components/Landing.js';
 import './App.css';
 
 function App() {
   return (
-      <html id='App'>
+      <div id='App'>
         <header id='header'>
           <nav id='header-text'>
             <h2>Cardhelper</h2>
             <h2 id='login-logout-button'>Login</h2>
           </nav>
         </header>
-      </html>
+        <main id='main-content'>
+          <Landing />
+        </main>
+      </div>
   );
 }
 
