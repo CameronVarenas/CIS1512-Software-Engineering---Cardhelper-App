@@ -3,6 +3,10 @@
 
 #App {
     background-color: #3c3c3c;
+    background-size: 10px 10px;
+    background-image:
+        linear-gradient(to right, #282828 1px, transparent 1px),
+        linear-gradient(to bottom, #282828 1px, transparent 1px);
 }
 
 /* header navbar display */
