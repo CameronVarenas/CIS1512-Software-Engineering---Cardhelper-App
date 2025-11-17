@@ -63,3 +63,14 @@ a.hover {
     margin-bottom: 10px;
     height: 25px;
 }
+
+/* user decks display */
+
+.user-decks-inputs {
+    margin: 2px;
+}
+
+#deck-display {
+    display: flex;
+    margin-top: 25px;
+}
