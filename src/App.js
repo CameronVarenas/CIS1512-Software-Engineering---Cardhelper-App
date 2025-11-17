@@ -51,4 +51,4 @@ class App extends Component {
 
 const mapStateToProps = state => state
 
-export default withRouter(connect(mapStateToProps, {updateUser})(App));
+export default connect(mapStateToProps, {updateUser})(withRouter(App));

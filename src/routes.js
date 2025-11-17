@@ -1,5 +1,10 @@
 import { Switch, Route } from 'react-router-dom';
-import { Landing, Auth, UserDecks, Flashcard, AddCardToDeck, CardList } from './components';
+import Landing from './components/Landing';
+import Auth from './components/Auth';
+import UserDecks from './components/UserDecks';
+import Flashcard from './components/Flashcard';
+import AddCardToDeck from './components/AddCardToDeck';
+import CardList from './components/CardList';
 
 export default (
     <Switch>
