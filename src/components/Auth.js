@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { updateUser } from '../redux/user_reducer';
 
 class Auth extends Component {
     constructor() {
@@ -160,4 +162,4 @@ class Auth extends Component {
     }
 }
 
-export default Auth;
+export default connect(state => state, {updateUser})(Auth);
