@@ -10,10 +10,8 @@ export default function MappedDecks(props) {
     
     return (
         <section id='deck-display'>
-            <div>
-                <h4>{props.deck.name}</h4>
-            </div>
-            <div>
+            <h4 id='deck-name'>{props.deck.name}</h4>
+            <div id='deck-options-bar'>
                 <Link
                     to={`/flashcard/${props.deck.deck_id}`}
                     className='deck-options'
@@ -35,12 +33,12 @@ export default function MappedDecks(props) {
                     onClick={() => props.deleteDeck(props.deck.deck_id)}
                 >Delete Deck</button>
             </div>
-            <input
+            {/* <input
                 type='text'
                 placeholder='Enter a new name'
                 onChange={e => handleDeckNewNameInput(e)}
                 value={deckNewName}
-            ></input>
+            ></input> */}
         </section>
     )
 };

@@ -33,7 +33,7 @@ class App extends Component {
           <header id='header'>
             <nav id='header-text'>
               <h2><Link
-                to='/'
+                to='/user-decks'
               >Cardhelper</Link></h2>
               <h2 id='login-logout-button'><Link
                 to='/auth'
