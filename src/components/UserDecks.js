@@ -20,16 +20,16 @@ class UserDecks extends Component {
         }
         this.getDecks();
     }
-   
+
     handleDeckNameInput(e) {
-        this.setState({deckName: e.target.value});
+        this.setState({ deckName: e.target.value });
     }
 
     getDecks() {
         axios
             .get('/api/decks/')
             .then((res) => {
-                this.setState({userDecks: res.data});
+                this.setState({ userDecks: res.data });
             })
             .catch(error => {
                 alert(error)
@@ -37,11 +37,11 @@ class UserDecks extends Component {
     }
 
     createDeck() {
-        const {deckName} = this.state
+        const { deckName } = this.state
         axios
-            .post('/api/decks/', {deckName})
+            .post('/api/decks/', { deckName })
             .then(() => {
-                this.setState({deckName: ''});
+                this.setState({ deckName: '' });
                 this.getDecks();
             })
             .catch((error) => {
@@ -51,7 +51,7 @@ class UserDecks extends Component {
 
     renameDeck(deck_id, deckNewName) {
         axios
-            .put(`/api/decks/${deck_id}`, {deckNewName})
+            .put(`/api/decks/${deck_id}`, { deckNewName })
             .then(() => this.getDecks())
             .catch((error) => {
                 console.log(this)
@@ -70,34 +70,41 @@ class UserDecks extends Component {
 
     render() {
         const decksMapped = this.state.userDecks.map(deck => {
-            return <MappedDecks
-                deck={deck}
-                deleteDeck={this.deleteDeck}
-                renameDeck={this.renameDeck}
-            />
-        })
-
             return (
-                <div>
-                    <section>
-                        <h3>Your Decks</h3>
-                    </section>
-                    <section>
-                        <input
-                            className='user-decks-inputs'
-                            type='text'
-                            placeholder='Enter deck name'
-                            onChange={e => this.handleDeckNameInput(e)}
-                            value={this.state.deckName}
-                        ></input>
-                        <button
-                            className='user-decks-inputs'
-                            onClick={() => this.createDeck()}
-                        >Create New Deck</button>
-                    </section>
+                <MappedDecks
+                    key={deck.deck_id}
+                    deck={deck}
+                    deleteDeck={this.deleteDeck}
+                    renameDeck={this.renameDeck}
+                />
+            );
+        });
+
+        return (
+            <div>
+                <section>
+                    <h3>Your Decks</h3>
+                </section>
+
+                <section>
+                    <input
+                        className='user-decks-inputs'
+                        type='text'
+                        placeholder='Enter deck name'
+                        onChange={e => this.handleDeckNameInput(e)}
+                        value={this.state.deckName}/>
+                    <button
+                        className='user-decks-inputs'
+                        onClick={() => this.createDeck()}>
+                        Create New Deck
+                    </button>
+                </section>
+
+                <section className="decks-scroll-container">
                     {decksMapped}
-                </div>
-            )
+                </section>
+            </div>
+        );
     }
 }
 
