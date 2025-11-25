@@ -70,18 +70,14 @@ a.hover {
     margin: 2px;
 }
 
-#deck-display {
-    display: flex;
-    align-items: center;
-    margin-top: 25px;
-}
-
 #deck-name {
     margin-right: 10%;
 }
 
 #deck-options-bar {
     display: flex;
+    align-items: center;
+    margin-top: 25px;
     padding-left: auto;
 }
 
