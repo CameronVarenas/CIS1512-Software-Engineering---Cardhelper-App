@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { Component } from 'react';
 import axios from 'axios';
 
 class Flashcard extends Component {
@@ -8,9 +8,8 @@ class Flashcard extends Component {
             showAnswer: false,
             flashcardData: [],
             currentCard: 0,
-            currentCardFront: '',
-            currentCardBack: ''
-        }
+            finished: false
+        };
     }
 
     componentDidMount() {
@@ -19,64 +18,99 @@ class Flashcard extends Component {
 
     getAllFlashcards() {
         axios
-            .get(`api/flashcards/${this.props.match.params.deck_id}`)
+            .get(`/api/flashcards/${this.props.match.params.deck_id}`)
             .then(res => {
-                this.setState({flashcardData: res.data});
-                this.setState({currentCardFront: res.data[this.state.currentCard].card_front});
-                this.setState({currentCardBack: res.data[this.state.currentCard].card_back});
+                const cards = res.data || [];
+                this.setState({
+                    flashcardData: cards,
+                    currentCard: 0,
+                    showAnswer: false,
+                    finished: cards.length === 0
+                });
             })
             .catch(error => {
                 alert(error);
-            })
+            });
     }
 
-    nextCard() {
-        this.setState({showAnswer: false});
-        this.state.currentCard === this.state.flashcardData.length - 1 ? 
-        this.setState({currentCard: 0}) :
-        this.setState({currentCard: ++this.state.currentCard});
-        this.setState({currentCardFront: this.state.flashcardData[this.state.currentCard].card_front});
-        this.setState({currentCardBack: this.state.flashcardData[this.state.currentCard].card_back});
-    }
+    nextCard = () => {
+        this.setState(prevState => {
+            const nextIndex = prevState.currentCard + 1;
 
-    previousCard() {
-        this.setState({showAnswer: false});
-        this.state.currentCard === 0 ? 
-        this.setState({currentCard: this.state.flashcardData.length - 1}) :
-        this.setState({currentCard: --this.state.currentCard});
-        this.setState({currentCardFront: this.state.flashcardData[this.state.currentCard].card_front});
-        this.setState({currentCardBack: this.state.flashcardData[this.state.currentCard].card_back});
-    }
+            if (nextIndex >= prevState.flashcardData.length) {
+                return {
+                    finished: true,
+                    showAnswer: false
+                };
+            }
+
+            return {
+                currentCard: nextIndex,
+                showAnswer: false
+            };
+        });
+    };
+
+    toggleAnswer = () => {
+        this.setState(prevState => ({
+            showAnswer: !prevState.showAnswer
+        }));
+    };
+
+    restart = () => {
+        this.setState({
+            currentCard: 0,
+            showAnswer: false,
+            finished: false
+        });
+    };
 
     render() {
-        const showAnswer = this.state.showAnswer;
+        const { flashcardData, currentCard, showAnswer, finished } = this.state;
+
+        if (finished) {
+            return (
+                <div className="flashcard">
+                    <h2>Study session complete!</h2>
+                    <button className="flashcard-buttons" onClick={this.restart}>
+                        Study Again
+                    </button>
+                </div>
+            );
+        }
+
+        if (flashcardData.length === 0) {
+            return <div className="flashcard">Loading flashcards...</div>;
+        }
+
+        const current = flashcardData[currentCard];
+
         return (
-            <div className='flashcard'>
+            <div className="flashcard">
                 <section>
-                    <p>{this.state.currentCardFront}</p>
+                    <p>{current.card_front}</p>
+                    <p>Card {currentCard + 1} of {flashcardData.length}</p>
+                </section>
+                <p className="flashcard divider">-------------------------------------------------------</p>
+                <section className="flashcard back-container">
+                    {showAnswer ? (
+                        <p className="back-text">{current.card_back}</p>
+                    ) : (
+                        <p className="back-placeholder">&nbsp;</p>)}
                 </section>
                 <button
-                    className='flashcard-buttons'
+                    className="flashcard-buttons bottom-button"
                     onClick={() => {
-                        this.state.showAnswer === false ?
-                        this.setState({showAnswer: true}) :
-                        this.setState({showAnswer: false})
-                    }}
-                >Show Answer</button>
-                <p className='flashcard'>-------------------------------------------------------</p>       
-                <button
-                    className='flashcard-buttons'
-                    onClick={() => this.previousCard()}
-                >Previous</button>
-                <button
-                    className='flashcard-buttons'
-                    onClick={() => this.nextCard()}
-                >Next</button>
-                <section className='flashcard'>
-                    {showAnswer ? <p>{this.state.currentCardBack}</p> : null}
-                </section>
+                        if (!showAnswer) {
+                            this.toggleAnswer();
+                        } else {
+                            this.nextCard();
+                        }
+                    }}>
+                    {showAnswer ? "Next Card" : "Show Answer"}
+                </button>
             </div>
-        )
+        );
     }
 }
 
