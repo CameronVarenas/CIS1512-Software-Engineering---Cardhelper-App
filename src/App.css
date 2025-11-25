@@ -48,8 +48,9 @@ a.hover {
     align-items: center;
     background-color: white;
     margin-top: 2.5%;
-    margin-left: 25%;
-    margin-right: 25%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: #282828 2px solid;
@@ -89,3 +90,69 @@ a.hover {
     border: none;
     font-weight: 600;
 }
+
+/* card list and mapped cards */
+
+.mapped-cards {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.mapped-cards-content {
+    flex: 1 1 45%;
+    max-width: 45%;
+    margin: 0;
+    padding-right: 0.75rem;
+    word-break: break-word;
+    word-break: break-word;
+    padding-right: 0.75rem;
+    margin: 0;
+}
+
+.mapped-cards-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-left: -15px;
+}
+
+.mapped-cards-section {
+    max-height: 350px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    padding: 0 1rem 0.5rem;
+    box-sizing: border-box;
+    width: 130%;
+    transform: translateX(-15%);
+}
+
+.mapped-cards-headers {
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 2;
+    border-bottom: 1px solid #ccc;
+}
+
+.mapped-cards,
+.mapped-cards-headers {
+    display: grid;
+    grid-template-columns: 45% 45% auto;
+    align-items: center;
+    padding: 0.4rem 0;
+}
+
+.mapped-cards-headers h5 {
+    display: flex;
+    margin: 0;
+    margin-left: 15px;
+}
+
