@@ -12,12 +12,12 @@ export default function MappedDecks(props) {
 
     const toggleRename = () => {
         setShowRename(!showRename);
-        setShowDeleteConfirm(false); // close delete section if open
+        setShowDeleteConfirm(false);
     }
 
     const toggleDeleteConfirm = () => {
         setShowDeleteConfirm(!showDeleteConfirm);
-        setShowRename(false); // close rename section if open
+        setShowRename(false);
     }
 
     return (
@@ -51,36 +51,30 @@ export default function MappedDecks(props) {
             </section>
 
             <section>
-                {/* RENAME SECTION */}
                 {showRename && (
                     <div className="rename-section">
                         <input
                             type='text'
                             placeholder='Enter a new deck name'
                             onChange={handleDeckNewNameInput}
-                            value={deckNewName}
-                        />
+                            value={deckNewName}/>
                         <button
                             onClick={() => {
                                 props.renameDeck(props.deck.deck_id, deckNewName);
                                 setDeckNewName('');
                                 setShowRename(false);
-                            }}
-                        >
+                                }}>
                             Save Name
                         </button>
                     </div>
                 )}
 
-
-                {/* DELETE CONFIRM SECTION */}
                 {showDeleteConfirm && (
                     <div className="delete-confirm-section">
                         <p>Are you sure you want to delete this deck?</p>
                         <button
                             className="delete-button"
-                            onClick={() => props.deleteDeck(props.deck.deck_id)}
-                        >
+                            onClick={() => props.deleteDeck(props.deck.deck_id)}>
                             Delete Deck
                         </button>
                     </div>
