@@ -1,4 +1,3 @@
-
 /* app background color */
 
 #App {
@@ -17,6 +16,7 @@
 a {
     color: white;
 }
+
 a.hover {
     color: white;
 }
@@ -35,6 +35,15 @@ a.hover {
     text-decoration: underline;
     text-underline-offset: 10px;
 }
+
+#header-text button {
+    all: unset;
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    cursor: pointer;
+}
+
 
 #login-logout-button {
     margin-left: auto;
@@ -166,4 +175,3 @@ a.hover {
     margin: 0;
     margin-left: 15px;
 }
-

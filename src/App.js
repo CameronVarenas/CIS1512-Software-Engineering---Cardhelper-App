@@ -35,9 +35,17 @@ class App extends Component {
               <h2><Link
                 to='/user-decks'
               >Cardhelper</Link></h2>
-              <h2 id='login-logout-button'><Link
-                to='/auth'
-              >Login</Link></h2>
+              <h2 id='login-logout-button'>
+                {this.props.user && this.props.user.id ? (
+                  <button onClick={() => this.logout()}>
+                    Logout
+                  </button>
+                ) : (
+                  <Link to='/auth'>
+                    Login
+                  </Link>
+                )}
+              </h2>
             </nav>
           </header>
           <main id='main-content'>
@@ -51,4 +59,4 @@ class App extends Component {
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps, {updateUser})(withRouter(App));
+export default connect(mapStateToProps, { updateUser })(withRouter(App));
